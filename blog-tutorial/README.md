@@ -26,6 +26,11 @@ npx create-remix --template remix-run/indie-stack
 
 Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --template your/repo`! Make it your own.
 
+## My Dev Notes
+
+* tutorial: https://remix.run/docs/en/v1/tutorials/blog
+* console error: "Warning: Did not expect server HTML to contain a <script> in <html>" this can be ignored or solved by running in incognito mode (though that disables some browser extensions)
+
 ## Development
 
 - Initial setup: _If you just generated this project, this step has been done for you._

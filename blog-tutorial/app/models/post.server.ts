@@ -1,5 +1,7 @@
 import { prisma } from "~/db.server";
 
+export type { Post } from "@prisma/client";
+
 /*
 type Post = {
   slug: string;
@@ -12,9 +14,6 @@ type Post = {
  * Presumably the command: "npx prisma db seed" generates .ts types from schema.prisma
  */
 export async function getPosts()/*: Promise<Array<Post>> */{
-  const data = await prisma.post.findMany();
-  console.log('export async function getPosts()')
-  console.log(data)
   return prisma.post.findMany();
   /*
   return [
@@ -28,4 +27,8 @@ export async function getPosts()/*: Promise<Array<Post>> */{
     },
   ];
    */
+}
+
+export async function getPost(slug: string | undefined) {
+  return prisma.post.findUnique({ where: { slug } });
 }

@@ -39,3 +39,4 @@ export default function Posts() {
     </main>
   );
 }
+// http://localhost:3000/posts/admin/test-crap

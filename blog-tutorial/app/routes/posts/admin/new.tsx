@@ -1,16 +1,10 @@
 import type { ActionFunction } from "@remix-run/node";
+import type {ActionData} from "./types";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData, useTransition } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
 import { createPost } from "~/models/post.server";
-
-type ActionData =
-  | {
-  title: null | string;
-  slug: null | string;
-  markdown: null | string;
-} | undefined;
 
 export const action: ActionFunction = async ({request}) => {
   //await new Promise((res) => setTimeout(res, 1000));

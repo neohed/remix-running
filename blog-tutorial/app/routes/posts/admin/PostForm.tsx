@@ -2,6 +2,7 @@ import React from "react";
 import type {ActionData} from "./types";
 import type { Post } from "~/models/post.server";
 import useShallowCopy from "~/lib/useShallowCopy";
+import TextInput from "~/components/TextInput";
 
 const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`;
 
@@ -12,7 +13,7 @@ interface PostFormProps {
 }
 
 const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
-  const [postEntity] = useShallowCopy(post);
+  const [postEntity, , mutate] = useShallowCopy(post);
 
   return (
     <div>
@@ -22,7 +23,12 @@ const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
           {errors?.title ? (
             <em className="text-red-600">{errors.title}</em>
           ) : null}
-          <input type="text" name="title" className={inputClassName} value={postEntity.title} />
+          <TextInput
+            id='title'
+            className={inputClassName}
+            value={postEntity.title}
+            changeHandler={title => mutate({title})}
+          />
         </label>
       </p>
       <p>
@@ -31,7 +37,7 @@ const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
           {errors?.slug ? (
             <em className="text-red-600">{errors.slug}</em>
           ) : null}
-          <input type="text" name="slug" className={inputClassName} />
+          <input type="text" value={postEntity.slug} name="slug" className={inputClassName} readOnly={true} />
         </label>
       </p>
       <p>
@@ -49,6 +55,8 @@ const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
           rows={20}
           name="markdown"
           className={`${inputClassName} font-mono`}
+          value={postEntity.markdown || ''}
+          onChange={({target}) => mutate({markdown: target.value})}
         />
       </p>
       <p className="text-right">

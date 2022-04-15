@@ -47,7 +47,7 @@ function useShallowCopy<T extends EntityType>(data: T): [T, boolean, Function, F
   }, [data])
 
   const mutate = (data: object) => dispatch({
-    type: 'update',
+    type: 'mutate',
     data,
   })
 

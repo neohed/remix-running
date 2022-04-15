@@ -16,7 +16,7 @@ export const loader = async () => {
 
 export default function Posts() {
   const { posts } = useLoaderData() as LoaderData;
-  console.log(posts); // Logs on server and client due to React "hydration"
+  // console.log(posts); // Logs on server and client due to React "hydration"
 
   return (
     <main>

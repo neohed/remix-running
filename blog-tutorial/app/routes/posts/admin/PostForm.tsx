@@ -37,7 +37,12 @@ const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
           {errors?.slug ? (
             <em className="text-red-600">{errors.slug}</em>
           ) : null}
-          <input type="text" value={postEntity.slug} name="slug" className={inputClassName} readOnly={true} />
+          <TextInput
+            id='slug'
+            className={inputClassName}
+            value={postEntity.slug}
+            changeHandler={slug => mutate({slug})}
+          />
         </label>
       </p>
       <p>

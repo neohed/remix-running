@@ -3,14 +3,15 @@ import type { ActionData } from "~/routes/posts/admin/types";
 import { json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { createPost, updatePost } from "~/models/post.server";
+import { FormTypes, parseFormType } from "~/lib/forms";
 
 export const posts_action: ActionFunction = async ({request}) => {
   const formData = await request.formData();
-  const {method} = request;
 
   const title = formData.get("title");
   const slug = formData.get("slug");
   const markdown = formData.get("markdown");
+  const formType = parseFormType(formData.get("formType") + '')
 
   const errors: ActionData = {
     title: title ? null : "Title is required",
@@ -39,7 +40,7 @@ export const posts_action: ActionFunction = async ({request}) => {
 
   const entity = { title, slug, markdown };
 
-  if (method === 'PUT') {
+  if (formType === FormTypes.edit) {
     await updatePost(entity);
   } else {
     await createPost(entity);

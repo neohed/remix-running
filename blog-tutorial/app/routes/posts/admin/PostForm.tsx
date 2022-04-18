@@ -1,6 +1,7 @@
 import React from "react";
 import type {ActionData} from "./types";
 import type { Post } from "~/models/post.server";
+import type { FormTypes } from "~/lib/forms";
 import useShallowCopy from "~/lib/useShallowCopy";
 import TextInput from "~/components/TextInput";
 
@@ -10,13 +11,15 @@ interface PostFormProps {
   post: Post,
   errors: ActionData,
   isInProgress: boolean,
+  formType: FormTypes,
 }
-//TODO Create hidden form field to determine type of action: add or edit.
-const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
+
+const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps) => {
   const [postEntity, , mutate] = useShallowCopy(post);
 
   return (
     <div>
+      <input type="hidden" name='formType' value={formType} />
       <p>
         <label>
           Post Title:{" "}

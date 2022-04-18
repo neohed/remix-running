@@ -3,6 +3,7 @@ import type { Post } from "~/models/post.server";
 import { Form, useActionData, useTransition } from "@remix-run/react";
 import PostForm from "~/routes/posts/admin/PostForm";
 import { posts_action } from "~/routes/posts/utility";
+import { FormTypes } from "~/lib/forms";
 
 export const action: ActionFunction = async (params) => {
   return posts_action(params)
@@ -20,6 +21,7 @@ export default function NewPost() {
         post={{} as Post}
         errors={errors}
         isInProgress={isCreating}
+        formType={FormTypes.add}
       />
     </Form>
   );

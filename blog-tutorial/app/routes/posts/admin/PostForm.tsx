@@ -15,10 +15,13 @@ interface PostFormProps {
 }
 
 const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps) => {
-  const [postEntity, , mutate] = useShallowCopy(post);
+  const [postEntity, isDirty, mutate] = useShallowCopy(post);
 
   return (
     <div>
+      {
+        isDirty ? <p className='text-red-700'>* Unsaved</p> : <p>&nbsp;</p>
+      }
       <input type="hidden" name='formType' value={formType} />
       <p>
         <label>

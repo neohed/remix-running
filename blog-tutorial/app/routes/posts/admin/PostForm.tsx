@@ -19,9 +19,13 @@ const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps)
 
   return (
     <div>
-      {
-        isDirty ? <p className='text-red-700'>* Unsaved</p> : <p>&nbsp;</p>
-      }
+      <p className='text-red-700'>
+        {
+          isDirty
+            ? '* Unsaved'
+            : ' '
+        }
+      </p>
       <input type="hidden" name='formType' value={formType} />
       <p>
         <label>

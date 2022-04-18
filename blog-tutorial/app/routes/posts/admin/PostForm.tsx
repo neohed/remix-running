@@ -11,7 +11,7 @@ interface PostFormProps {
   errors: ActionData,
   isInProgress: boolean,
 }
-
+//TODO Create hidden form field to determine type of action: add or edit.
 const PostForm = ({post, errors, isInProgress = false}: PostFormProps) => {
   const [postEntity, , mutate] = useShallowCopy(post);
 

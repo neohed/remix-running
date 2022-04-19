@@ -4,6 +4,7 @@ import type { Post } from "~/models/post.server";
 import type { FormTypes } from "~/lib/forms";
 import useShallowCopy from "~/lib/useShallowCopy";
 import TextInput from "~/components/TextInput";
+import { Form } from "@remix-run/react";
 
 const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`;
 
@@ -18,7 +19,7 @@ const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps)
   const [postEntity, isDirty, mutate] = useShallowCopy(post);
 
   return (
-    <div>
+    <Form method="post">
       <p className='text-red-700'>
         {
           isDirty
@@ -83,7 +84,7 @@ const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps)
           {isInProgress ? "Saving..." : "Save"}
         </button>
       </p>
-      </div>
+    </Form>
   );
 };
 

@@ -2,7 +2,7 @@ import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import type { Post } from "~/models/post.server";
 import { getPost } from "~/models/post.server";
-import { Form, useActionData, useLoaderData, useTransition } from "@remix-run/react";
+import { useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import PostForm from "~/routes/posts/admin/PostForm";
 import { posts_action } from "~/routes/posts/utility";
@@ -20,8 +20,8 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export const action: ActionFunction = async (params) => {
-  return posts_action(params)
-}
+  return posts_action(params);
+};
 
 export default function EditPostSlug() {
   const errors = useActionData();
@@ -32,14 +32,12 @@ export default function EditPostSlug() {
   const isUpdating = Boolean(transition.submission);
 
   return (
-    <Form method="post">
-      <PostForm
-        post={post}
-        errors={errors}
-        isInProgress={isUpdating}
-        formType={FormTypes.edit}
-      />
-    </Form>
+    <PostForm
+      post={post}
+      errors={errors}
+      isInProgress={isUpdating}
+      formType={FormTypes.edit}
+    />
   );
 }
 

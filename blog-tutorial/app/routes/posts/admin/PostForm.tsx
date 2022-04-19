@@ -1,7 +1,7 @@
 import React from "react";
-import type {ActionData} from "./types";
+import type { ActionData } from "./types";
 import type { Post } from "~/models/post.server";
-import type { FormTypes } from "~/lib/forms";
+import { FormTypes } from "~/lib/forms";
 import useShallowCopy from "~/lib/useShallowCopy";
 import TextInput from "~/components/TextInput";
 import { Form } from "@remix-run/react";
@@ -75,7 +75,14 @@ const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps)
           onChange={({target}) => mutate({markdown: target.value})}
         />
       </p>
-      <p className="text-right">
+      <div className="flex justify-between">
+        {
+          formType === FormTypes.edit && <button
+            className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300 right-auto"
+          >
+            Delete
+          </button>
+        }
         <button
           type="submit"
           className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
@@ -83,7 +90,7 @@ const PostForm = ({post, errors, isInProgress = false, formType}: PostFormProps)
         >
           {isInProgress ? "Saving..." : "Save"}
         </button>
-      </p>
+      </div>
     </Form>
   );
 };

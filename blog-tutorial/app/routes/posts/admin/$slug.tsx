@@ -2,11 +2,12 @@ import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import type { Post } from "~/models/post.server";
 import { getPost } from "~/models/post.server";
-import { useActionData, useLoaderData, useTransition } from "@remix-run/react";
+import { useActionData, useLoaderData, useTransition, Form } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import PostForm from "~/routes/posts/admin/PostForm";
 import { posts_action } from "~/routes/posts/utility";
 import { FormTypes } from "~/lib/forms";
+import React from "react";
 
 type LoaderData = { post: Post };
 
@@ -32,12 +33,25 @@ export default function EditPostSlug() {
   const isUpdating = Boolean(transition.submission);
 
   return (
-    <PostForm
-      post={post}
-      errors={errors}
-      isInProgress={isUpdating}
-      formType={FormTypes.edit}
-    />
+    <div>
+      <PostForm
+        post={post}
+        errors={errors}
+        isInProgress={isUpdating}
+        formType={FormTypes.edit}
+      />
+      <Form method="post">
+        <input type="hidden" name="slug" value={post.slug} />
+        <button
+          type="submit"
+          className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400 disabled:bg-blue-300"
+          name="action"
+          value="delete"
+        >
+          Delete
+        </button>
+      </Form>
+    </div>
   );
 }
 

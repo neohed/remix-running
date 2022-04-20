@@ -57,6 +57,10 @@ I tried: https://www.remix-validated-form.io/
 </form>
 ```
 
+Zod is good! (https://www.remix-validated-form.io/zod-form-data)
+
+I don't like the way you need to create a child component for each form field if you want to use the hook to get validation errors!
+
 ## Development
 
 - Initial setup: _If you just generated this project, this step has been done for you._

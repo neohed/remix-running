@@ -8,7 +8,7 @@ type TextLabelInputProps = {
   value: string;
   changeHandler: ChangeHandler;
   error: string | null | undefined;
-  className: string;
+  className?: string;
 }
 
 const TextLabelInput = ({id, label, value, changeHandler, error, className} : TextLabelInputProps) => {

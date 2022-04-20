@@ -3,7 +3,6 @@ import type { ActionData } from "~/routes/posts/admin/types";
 import { json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { createPost, updatePost, deletePost } from "~/models/post.server";
-import { FormTypes, parseFormType } from "~/lib/forms";
 
 export const posts_action: ActionFunction = async ({request}) => {
   const formData = await request.formData();
@@ -14,7 +13,6 @@ export const posts_action: ActionFunction = async ({request}) => {
   const slug = formData.get("slug");
   const markdown = formData.get("markdown");
   const _action = formData.get("_action");
-  const formType = parseFormType(formData.get("formType") + '')
 
   invariant(
     typeof slug === "string",
@@ -49,7 +47,7 @@ export const posts_action: ActionFunction = async ({request}) => {
 
   const entity = { title, slug, markdown };
 
-  if (formType === FormTypes.edit) {
+  if (_action === 'edit') {
     await updatePost(entity);
   } else {
     await createPost(entity);

@@ -44,6 +44,7 @@ Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --
 * tutorial: https://remix.run/docs/en/v1/tutorials/blog
 * console error: "Warning: Did not expect server HTML to contain a <script> in <html>" this can be ignored or solved by running in incognito mode (though that disables some browser extensions)
 * Docs: https://remix.guide/discover
+* React TS: https://www.carlrippon.com/react-children-with-typescript/
 
 ## Development
 

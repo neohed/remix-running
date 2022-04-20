@@ -1,6 +1,7 @@
 export enum FormTypes {
   add,
   edit,
+  delete
 }
 
 export function parseFormType(n: number | string): FormTypes {

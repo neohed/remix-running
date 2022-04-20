@@ -47,6 +47,16 @@ Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --
 * React TS: https://www.carlrippon.com/react-children-with-typescript/
 * Singles: https://www.youtube.com/watch?v=EdB_nj01C80&list=PLXoynULbYuEDG2wBFSZ66b85EIspy3fy6&index=8
 
+## remix-run form validation
+
+I tried: https://www.remix-validated-form.io/
+
+```html
+<form name = "simpleForm" action = "#" onsubmit = "return validateForm()" >
+  <input type = "text" name = "name" required />
+</form>
+```
+
 ## Development
 
 - Initial setup: _If you just generated this project, this step has been done for you._

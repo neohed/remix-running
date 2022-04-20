@@ -14,7 +14,7 @@ const initialState = (): ReducerState => ({
 
 const reducer = (state: ReducerState, {type, data}: { type: string, data: EntityType}) => {
   switch (type) {
-    case 'new':
+    case 'clear':
       return initialState()
     case 'set':
       return {
@@ -51,8 +51,8 @@ function useShallowCopy<T extends EntityType>(data: T): [T, boolean, Function, F
     data,
   })
 
-  const reset = () => dispatch({
-    type: 'new',
+  const clear = () => dispatch({
+    type: 'clear',
     data: null
   })
 
@@ -60,7 +60,7 @@ function useShallowCopy<T extends EntityType>(data: T): [T, boolean, Function, F
     persistedData.data as T,
     persistedData.isDirty,
     mutate,
-    reset,
+    clear,
   ]
 }
 

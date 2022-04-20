@@ -1,6 +1,6 @@
 import React from 'react'
 
-type ChangeHandler = (
+export type ChangeHandler = (
   value: number | string
 ) => void;
 

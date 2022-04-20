@@ -2,8 +2,8 @@ import React from "react";
 import type { ActionData } from "./types";
 import type { Post } from "~/models/post.server";
 import useShallowCopy from "~/lib/useShallowCopy";
-import TextInput from "~/components/TextInput";
 import FormSmart from "~/components/FormSmart";
+import TextLabelInput from "~/components/TextLabelInput";
 
 const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`;
 
@@ -36,34 +36,22 @@ const PostForm = ({ post, errors, formType }: PostFormProps) => {
               }
             </p>
             <input type="hidden" name="formType" value={formType} />
-            <p>
-              <label>
-                Post Title:{" "}
-                {errors?.title ? (
-                  <em className="text-red-600">{errors.title}</em>
-                ) : null}
-                <TextInput
-                  id="title"
-                  className={inputClassName}
-                  value={postEntity.title}
-                  changeHandler={title => mutate({ title })}
-                />
-              </label>
-            </p>
-            <p>
-              <label>
-                Post Slug:{" "}
-                {errors?.slug ? (
-                  <em className="text-red-600">{errors.slug}</em>
-                ) : null}
-                <TextInput
-                  id="slug"
-                  className={inputClassName}
-                  value={postEntity.slug}
-                  changeHandler={slug => mutate({ slug })}
-                />
-              </label>
-            </p>
+            <TextLabelInput
+              id='title'
+              label='Post Title'
+              value={postEntity.title}
+              error={errors?.title}
+              className={inputClassName}
+              changeHandler={title => mutate({ title })}
+            />
+            <TextLabelInput
+              id='slug'
+              label='Post Slug'
+              value={postEntity.slug}
+              error={errors?.slug}
+              className={inputClassName}
+              changeHandler={slug => mutate({ slug })}
+            />
             <p>
               <label htmlFor="markdown">
                 Markdown:{" "}

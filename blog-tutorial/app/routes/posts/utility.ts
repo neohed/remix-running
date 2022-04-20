@@ -13,7 +13,7 @@ export const posts_action: ActionFunction = async ({request}) => {
   const title = formData.get("title");
   const slug = formData.get("slug");
   const markdown = formData.get("markdown");
-  const action = formData.get("action");
+  const _action = formData.get("_action");
   const formType = parseFormType(formData.get("formType") + '')
 
   invariant(
@@ -21,7 +21,7 @@ export const posts_action: ActionFunction = async ({request}) => {
     "slug must be a string"
   );
 
-  if (action === "delete") {
+  if (_action === "delete") {
     await deletePost(slug);
     return redirect("/posts/admin");
   }
